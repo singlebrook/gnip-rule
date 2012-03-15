@@ -9,7 +9,7 @@ module GnipRule
 
     def valid?
       # See http://docs.gnip.com/w/page/35663947/Power%20Track
-      if contains_stop_word?(@value)
+      if contains_stop_word?(@value) || too_long?(@value) || contains_negated_or?(@value) || too_many_positive_terms?(@value) || contains_empty_source?(@value)
         return false
       end
       true
@@ -27,7 +27,23 @@ module GnipRule
     protected
     def contains_stop_word?(value)
       stop_words = %W(a an and at but by com from http https if in is it its me my or rt the this to too via we www you)
-      (stop_words & value.split(/\s/)).size > 0
+      (stop_words & value.gsub(/\"[^\"]*\"/, '').split(/\s/)).size > 0
+    end
+
+    def too_long?(value)
+      value.size > 1024
+    end
+
+    def contains_negated_or?(value)
+      !value[/\-\w+ OR/].nil?
+    end
+
+    def too_many_positive_terms?(value)
+      value.scan(/\b\w+\b/).size > 10
+    end
+
+    def contains_empty_source?(value)
+      !value[/source\:\s/].nil?
     end
   end
 end
