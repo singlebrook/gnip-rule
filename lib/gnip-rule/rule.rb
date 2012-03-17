@@ -1,3 +1,5 @@
+require 'json'
+
 module GnipRule
   class Rule
     attr_accessor :value, :tag
@@ -15,13 +17,18 @@ module GnipRule
       true
     end
 
-    def to_json
-      tag_json = @tag ? ",\"tag\":\"#{@tag}\"" : ''
-      "{\"value\":\"#{@value}\"#{tag_json}}"
+    def as_json
+      as_hash.to_json
+    end
+
+    def as_hash
+      obj = {:value => @value}
+      obj[:tag] = @tag unless @tag.nil?
+      obj
     end
 
     def to_s
-      to_json
+      as_json
     end
 
     protected
@@ -39,7 +46,7 @@ module GnipRule
     end
 
     def too_many_positive_terms?(value)
-      value.scan(/\b\w+\b/).size > 10
+      value.scan(/\b\w+|\"[\-\s\w]+\"\b/).size > 10
     end
 
     def contains_empty_source?(value)

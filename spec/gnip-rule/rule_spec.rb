@@ -44,14 +44,14 @@ describe GnipRule::Rule do
     end
   end
 
-  describe '#to_json' do
+  describe '#as_json' do
     it 'should omit tag if tag not defined' do
       rule = GnipRule::Rule.new('foo')
-      rule.to_json.should == '{"value":"foo"}'
+      rule.as_json.should == '{"value":"foo"}'
     end
     it 'should add tag if defined' do
       rule = GnipRule::Rule.new('foo', 'bar')
-      rule.to_json.should == '{"value":"foo","tag":"bar"}'
+      rule.as_json.should == '{"value":"foo","tag":"bar"}'
     end
   end
 end

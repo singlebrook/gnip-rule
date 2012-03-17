@@ -1,4 +1,5 @@
 require 'curb'
+require 'json'
 require 'gnip-rule/rule'
 
 module GnipRule
@@ -26,24 +27,21 @@ module GnipRule
         curl.username = @username
         curl.password = @password
         curl.on_body do |obj|
-          return obj
+          JSON.parse(obj)[:rules].collect { |o| Rule.new(o.value, o.tag) }
         end
       end
     end
 
     def jsonify_rules(values, tag=nil)
-      json = nil
+      rules = nil
       if values.instance_of?(Array)
-        rules_json = values.collect { |value|
-          value.instance_of?(Rule) ? value.to_json : GnipRule::Rule.new(value, tag).to_json
-        }.join(',')
-        json = "{\"rules\":[#{rules_json}]}"
+        rules = values.collect { |o| o.instance_of?(Rule) ? o : Rule.new(o, tag) }
       elsif values.instance_of?(Rule)
-        json = "{\"rules\":[#{values.to_json}]}"
+        rules = [values]
       else
-        json = "{\"rules\":[#{Rule.new(values, tag).to_json}]}"
+        rules = [Rule.new(values, tag)]
       end
-      json
+      {:rules => rules.collect(&:as_hash)}.to_json
     end
 
     protected
