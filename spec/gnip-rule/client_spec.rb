@@ -22,6 +22,8 @@ describe GnipRule::Client do
       Curl::Easy.should_receive(:http_post)
       subject.add('value', 'tag')
     end
+
+    xit 'should raise an error if we got a 4xx or 5xx HTTP status'
   end
 
   describe '#delete' do

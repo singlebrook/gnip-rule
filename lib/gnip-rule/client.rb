@@ -55,8 +55,7 @@ module GnipRule
         curl.password = @password
         curl.on_complete do |res|
           if res.response_code >= 400
-            # TODO: get message in resp body
-            raise 'Invalid request'
+            raise "Got #{res.response_code}; body: #{res.body_str}"
           end
         end
       end
