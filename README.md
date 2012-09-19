@@ -1,4 +1,4 @@
-# gnip-rule
+# gnip-rule [![Build Status](https://secure.travis-ci.org/eriwen/gnip-rule.png)](http://travis-ci.org/eriwen/gnip-rule)
 Ruby library for working with the Gnip Rules API
 
 ## Installation
