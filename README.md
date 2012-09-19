@@ -1,10 +1,11 @@
 # gnip-rule
+Ruby library for working with the Gnip Rules API
 
 ## Installation
 Add the following to your `Gemfile`:
 
 ```ruby
-gem 'gnip-rule', :git => 'https://github.com/eriwen/gnip-rule'
+gem 'gnip-rule', '~> 0.1.1'
 ```
 
 ## Example
