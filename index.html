@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640" />
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Gnip-rule by eriwen</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/eriwen/gnip-rule">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Gnip-rule</h1>
+            <h2>Ruby library for working with the Gnip Rules API</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/eriwen/gnip-rule/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/eriwen/gnip-rule/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h2>Installation</h2>
+
+<p>Add the following to your <code>Gemfile</code>:</p>
+
+<div class="highlight"><pre><span class="n">gem</span> <span class="s1">'gnip-rule'</span><span class="p">,</span> <span class="s1">'~&gt; 0.1.1'</span>
+</pre></div>
+
+<h2>Usage</h2>
+
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'gnip-rule'</span>
+
+<span class="n">ruler</span> <span class="o">=</span> <span class="no">GnipRule</span><span class="o">::</span><span class="no">Client</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">GNIP_API_URL</span><span class="p">,</span> <span class="no">GNIP_USERNAME</span><span class="p">,</span> <span class="no">GNIP_PASSWORD</span><span class="p">)</span>
+
+<span class="c1"># Add as a String, Rule, or Array of either</span>
+<span class="n">ruler</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">)</span>
+<span class="n">ruler</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">)</span>
+<span class="n">ruler</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">[</span><span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'baz'</span><span class="o">]</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">)</span>
+<span class="n">ruler</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="no">GnipRule</span><span class="o">::</span><span class="no">Rule</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">'value'</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">))</span>
+<span class="n">ruler</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">[</span><span class="no">GnipRule</span><span class="o">::</span><span class="no">Rule</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">'value'</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">),</span> <span class="n">ruler</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="no">GnipRule</span><span class="o">::</span><span class="no">Rule</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">'othervalue'</span><span class="p">,</span> <span class="s1">'othertag'</span><span class="p">))</span><span class="o">]</span><span class="p">)</span>
+
+<span class="c1"># Same with delete</span>
+<span class="n">ruler</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">'baz'</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">)</span>
+<span class="n">ruler</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="o">[</span><span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="o">]</span><span class="p">)</span>
+<span class="n">ruler</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="no">GnipRule</span><span class="o">::</span><span class="no">Rule</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">'value'</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">))</span>
+
+<span class="c1"># Get all ruler as Rule objects</span>
+<span class="n">ruler</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+</pre></div>
+
+<h2>License</h2>
+
+<p>MIT License: <a href="http://www.opensource.org/licenses/mit-license.php">http://www.opensource.org/licenses/mit-license.php</a></p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/eriwen">eriwen</a> can be found on <a href="https://github.com/eriwen/gnip-rule">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
