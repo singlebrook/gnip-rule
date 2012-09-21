@@ -17,7 +17,7 @@
         $('#main_content').headsmart()
       })
     </script>
-    <title>Gnip-rule by eriwen</title>
+    <title>gnip-rule by eriwen</title>
   </head>
 
   <body>
@@ -37,7 +37,7 @@
 
       <section id="downloads">
         <span class="inner">
-          <a href="https://github.com/eriwen/gnip-rule/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/eriwen/gnip-rule/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+          <a href="https://github.com/eriwen/gnip-rule/zipball/master" class="zip"><em>download</em> .zip</a><a href="https://github.com/downloads/eriwen/gnip-rule/gnip-rule-0.2.gem" class="tgz"><em>download</em> gem</a>
         </span>
       </section>
 
@@ -46,44 +46,44 @@
 
 
       <section id="main_content">
-        <h2>Installation</h2>
+        <p>This gem simplifies the effort to add/delete/list rules using the <a href="http://support.gnip.com/customer/portal/articles/477713-rules-methods-documentation">Gnip Rules API</a>. It handles HTTP request/response and helps your rules conform to Gnip's restrictions.</p>
 
-<p>Add the following to your <code>Gemfile</code>:</p>
+        <h2>Install it</h2>
 
-<div class="highlight"><pre><span class="n">gem</span> <span class="s1">'gnip-rule'</span><span class="p">,</span> <span class="s1">'~&gt; 0.1.1'</span>
+<p><code>gem install gnip-rule</code> or add the following to your <code>Gemfile</code>:</p>
+
+<div class="highlight"><pre><span class="n">gem</span> <span class="s1">'gnip-rule'</span><span class="p">,</span> <span class="s1">'~&gt; 0.2'</span>
 </pre></div>
 
-<h2>Usage</h2>
+<h2>Use it</h2>
 
 <div class="highlight"><pre><span class="nb">require</span> <span class="s1">'gnip-rule'</span>
 
-<span class="n">ruler</span> <span class="o">=</span> <span class="no">GnipRule</span><span class="o">::</span><span class="no">Client</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">GNIP_API_URL</span><span class="p">,</span> <span class="no">GNIP_USERNAME</span><span class="p">,</span> <span class="no">GNIP_PASSWORD</span><span class="p">)</span>
+<span class="n">rules</span> <span class="o">=</span> <span class="no">GnipRule</span><span class="o">::</span><span class="no">Client</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">API_URL</span><span class="p">,</span> <span class="no">USERNAME</span><span class="p">,</span> <span class="no">PASSWORD</span><span class="p">)</span>
 
 <span class="c1"># Add as a String, Rule, or Array of either</span>
-<span class="n">ruler</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">)</span>
-<span class="n">ruler</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">)</span>
-<span class="n">ruler</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">[</span><span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'baz'</span><span class="o">]</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">)</span>
-<span class="n">ruler</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="no">GnipRule</span><span class="o">::</span><span class="no">Rule</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">'value'</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">))</span>
-<span class="n">ruler</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">[</span><span class="no">GnipRule</span><span class="o">::</span><span class="no">Rule</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">'value'</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">),</span> <span class="n">ruler</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="no">GnipRule</span><span class="o">::</span><span class="no">Rule</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">'othervalue'</span><span class="p">,</span> <span class="s1">'othertag'</span><span class="p">))</span><span class="o">]</span><span class="p">)</span>
+<span class="n">rules</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">)</span>
+<span class="n">rules</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">)</span>
+<span class="n">rules</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">[</span><span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'baz'</span><span class="o">]</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">)</span>
+<span class="n">rules</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="no">GnipRule</span><span class="o">::</span><span class="no">Rule</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">'value'</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">))</span>
 
 <span class="c1"># Same with delete</span>
-<span class="n">ruler</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">'baz'</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">)</span>
-<span class="n">ruler</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="o">[</span><span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="o">]</span><span class="p">)</span>
-<span class="n">ruler</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="no">GnipRule</span><span class="o">::</span><span class="no">Rule</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">'value'</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">))</span>
+<span class="n">rules</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">'baz'</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">)</span>
+<span class="n">rules</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="o">[</span><span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="o">]</span><span class="p">)</span>
+<span class="n">rules</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="no">GnipRule</span><span class="o">::</span><span class="no">Rule</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">'value'</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">))</span>
 
-<span class="c1"># Get all ruler as Rule objects</span>
-<span class="n">ruler</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+<span class="c1"># Get a list of rules as Gnip::Rule objects</span>
+<span class="n">rules</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
 </pre></div>
 
 <h2>License</h2>
-
-<p>MIT License: <a href="http://www.opensource.org/licenses/mit-license.php">http://www.opensource.org/licenses/mit-license.php</a></p>
+<p>Licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.</p>
       </section>
 
       <footer>
         <span class="ribbon-outer">
           <span class="ribbon-inner">
-            <p>this project by <a href="https://github.com/eriwen">eriwen</a> can be found on <a href="https://github.com/eriwen/gnip-rule">GitHub</a></p>
+            <p>this project by <a href="https://github.com/eriwen">eriwen</a> can be found on <a href="https://github.com/eriwen/gnip-rule">GitHub</a> <a href="http://coderwall.com/eriwen"><img style="border: 0px none; vertical-align: bottom; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; margin-left: 15px;" alt="Endorse eriwen on Coderwall" src="http://api.coderwall.com/eriwen/endorsecount.png" /></a></p>
           </span>
           <span class="left-tail"></span>
           <span class="right-tail"></span>
@@ -93,7 +93,5 @@
       </footer>
 
     </div>
-
-    
   </body>
 </html>
