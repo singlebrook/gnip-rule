@@ -49,16 +49,18 @@ module GnipRule
 
     protected
     def post(url, data)
+      err = nil
       Curl::Easy.http_post(url, data) do |curl|
         curl.http_auth_types = :basic
         curl.username = @username
         curl.password = @password
         curl.on_complete do |res|
           if res.response_code >= 400
-            raise "Got #{res.response_code}; body: #{res.body_str}"
+            err = "Got #{res.response_code}; body: #{res.body_str}"
           end
         end
       end
+      raise err if err
     end
   end
 end

@@ -10,7 +10,6 @@ module GnipRule
     end
 
     def valid?
-      # See http://docs.gnip.com/w/page/35663947/Power%20Track
       if contains_stop_word?(@value) || too_long?(@value) || contains_negated_or?(@value) || too_many_positive_terms?(@value) || contains_empty_source?(@value)
         return false
       end
