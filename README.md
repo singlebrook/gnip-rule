@@ -1,35 +1,37 @@
 # gnip-rule [![Build Status](https://secure.travis-ci.org/eriwen/gnip-rule.png)](http://travis-ci.org/eriwen/gnip-rule)
-Ruby library for working with the Gnip Rules API
+This gem simplifies the effort to add/delete/list rules using the [Gnip Rules API](http://support.gnip.com/customer/portal/articles/477713-rules-methods-documentation). It handles HTTP request/response and helps your rules conform to Gnip's restrictions.
 
 ## Installation
-Add the following to your `Gemfile`:
+`gem install gnip-rule` or add the following to your `Gemfile`:
 
 ```ruby
-gem 'gnip-rule', '~> 0.1.1'
+gem 'gnip-rule', '~> 0.2'
 ```
 
-## Example
+## Usage
 
 ```ruby
 require 'gnip-rule'
 
-ruler = GnipRule::Client.new(GNIP_API_URL, GNIP_USERNAME, GNIP_PASSWORD)
+rules = GnipRule::Client.new(API_URL, USERNAME, PASSWORD)
 
 # Add as a String, Rule, or Array of either
-ruler.add('foo')
-ruler.add('bar', 'tag')
-ruler.add(['foo', 'bar', 'baz'], 'tag')
-ruler.add(GnipRule::Rule.new('value', 'tag'))
-ruler.add([GnipRule::Rule.new('value', 'tag'), ruler.add(GnipRule::Rule.new('othervalue', 'othertag'))])
+rules.add('foo')
+rules.add('bar', 'tag')
+rules.add(['foo', 'bar', 'baz'], 'tag')
+rules.add(GnipRule::Rule.new('value', 'tag'))
+rules.add([GnipRule::Rule.new('foo', 'bar'), GnipRule::Rule.new('baz', 'tag2')])
 
 # Same with delete
-ruler.delete('baz', 'tag')
-ruler.delete(['foo', 'bar'])
-ruler.delete(GnipRule::Rule.new('value', 'tag'))
+rules.delete('baz', 'tag')
+rules.delete(['foo', 'bar'])
+rules.delete(GnipRule::Rule.new('value', 'tag'))
 
-# Get all ruler as Rule objects
-ruler.list()
+# Get all rules
+rules.list()
 ```
 
 ## License
-MIT License: http://www.opensource.org/licenses/mit-license.php
+Licenced under the [MIT License](http://www.opensource.org/licenses/mit-license.php)
+
+I provide this software free of charge. If you find it helpful, please endorse me on coderwall: [![endorse](http://api.coderwall.com/eriwen/endorsecount.png)](http://coderwall.com/eriwen)
