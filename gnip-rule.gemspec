@@ -20,8 +20,22 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ['lib']
 
-  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'rspec', '~> 2.10.0'
+  s.add_development_dependency 'guard', '~> 1.4.0'
+  s.add_development_dependency 'guard-rspec', '~> 1.2.0'
+  s.add_development_dependency 'fuubar', '~> 1.1.0'
+
+  if RUBY_PLATFORM[/darwin/]
+    s.add_development_dependency 'rb-fsevent'
+    s.add_development_dependency 'ruby_gntp'
+  elsif RUBY_PLATFORM[/linux/]
+    s.add_development_dependency 'rb-inotify'
+    s.add_development_dependency 'libnotify'
+  elsif RUBY_PLATFORM[/ming/]
+    s.add_development_dependency 'wdm'
+    s.add_development_dependency 'rb-notifu'
+  end
 
   s.add_dependency 'curb', '>= 0.8.0', '< 0.9.0'
-  s.add_dependency 'json', '>= 1.6.0', '< 1.7.0'
+  s.add_dependency 'json', '>= 1.7.0', '< 1.8.0'
 end
