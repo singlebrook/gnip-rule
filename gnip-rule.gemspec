@@ -20,7 +20,9 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ['lib']
 
+  s.add_development_dependency 'rake', '~> 0.9.2.2'
   s.add_development_dependency 'rspec', '~> 2.10.0'
+  s.add_development_dependency 'webmock', '~> 1.8.11'
   s.add_development_dependency 'guard', '~> 1.4.0'
   s.add_development_dependency 'guard-rspec', '~> 1.2.0'
   s.add_development_dependency 'fuubar', '~> 1.1.0'

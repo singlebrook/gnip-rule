@@ -18,7 +18,7 @@ module GnipRule
     end
 
     def delete(value, tag=nil)
-      post("#{@url}?_method=delete", jsonify_rules(value, tag))
+      post("#@url?_method=delete", jsonify_rules(value, tag))
     end
 
     def list()

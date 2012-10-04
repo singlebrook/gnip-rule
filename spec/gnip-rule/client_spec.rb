@@ -3,38 +3,48 @@ require 'spec-helper'
 require 'gnip-rule/client'
 
 describe GnipRule::Client do
-  let(:fake_curb) { double("Curl::Easy") }
-  before do
-    Curl::Easy.stub(:http_post => fake_curb)
-    Curl::Easy.stub(:http_get => fake_curb)
-  end
-
-  subject { GnipRule::Client.new('https://api.gnip.com:443/accounts/foo/publishers/twitter/streams/track/prod/rules.json', 'username', 'password') }
+  let(:base_url) { 'https://api.gnip.com:443/accounts/foo/publishers/twitter/streams/track/prod/rules.json' }
+  let(:base_url_with_auth) { 'https://username:password@api.gnip.com:443/accounts/foo/publishers/twitter/streams/track/prod/rules.json' }
+  subject { GnipRule::Client.new(base_url, 'username', 'password') }
 
   describe '#initialize' do
     it 'should convert XML URLs to JSON' do
-      subject.url.should == 'https://api.gnip.com:443/accounts/foo/publishers/twitter/streams/track/prod/rules.json'
+      subject.url.should == base_url
     end
   end
 
   describe '#add' do
     it 'should POST rule to the given URL with given credentials' do
-      Curl::Easy.should_receive(:http_post)
+      stub_request(:post, base_url_with_auth).
+          with(:body => '{"rules":[{"value":"value","tag":"tag"}]}').
+          to_return(:status => 200, :body => '', :headers => {})
       subject.add('value', 'tag')
+    end
+
+    it 'should raise an error if Gnip returns HTTP error' do
+      stub_request(:post, base_url_with_auth).
+          with(:body => '{"rules":[{"value":"value","tag":"tag"}]}').
+          to_return(:status => 401, :body => 'Error message', :headers => {})
+      lambda { subject.add('value', 'tag') }.should raise_error('Got 401; body: Error message')
     end
   end
 
   describe '#delete' do
     it 'should POST rule json to a URL with given credentials' do
-      Curl::Easy.should_receive(:http_post)
+      stub_request(:post, "#{base_url_with_auth}?_method=delete").
+          with(:body => '{"rules":[{"value":"value","tag":"tag"}]}').
+          to_return(:status => 200, :body => '', :headers => {})
       subject.delete('value', 'tag')
     end
   end
 
   describe '#list' do
     it 'should GET a URL with given credentials' do
-      Curl::Easy.should_receive(:http_get)
-      subject.list()
+      stub_request(:get, base_url_with_auth).
+          to_return(:status => 200, :body => '{"rules":[{"value":"foo","tag":"baz"},{"value":"bar","tag":"baz"}]}')
+      rules = subject.list()
+      rules.size.should == 2
+      rules.map { |r| r.valid?.should == true }
     end
   end
 
