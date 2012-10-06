@@ -27,13 +27,13 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'guard-rspec', '~> 1.2.0'
   s.add_development_dependency 'fuubar', '~> 1.1.0'
 
-  if RUBY_PLATFORM[/darwin/]
+  if RbConfig::CONFIG['host_os'] =~ /darwin/
     s.add_development_dependency 'rb-fsevent'
     s.add_development_dependency 'ruby_gntp'
-  elsif RUBY_PLATFORM[/linux/]
+  elsif RbConfig::CONFIG['host_os'] =~ /linux/
     s.add_development_dependency 'rb-inotify'
     s.add_development_dependency 'libnotify'
-  elsif RUBY_PLATFORM[/ming/]
+  elsif RbConfig::CONFIG['host_os'] =~ /msmin|mingw/
     s.add_development_dependency 'wdm'
     s.add_development_dependency 'rb-notifu'
   end
