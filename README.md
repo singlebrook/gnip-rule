@@ -5,7 +5,7 @@ This gem simplifies the effort to add/delete/list rules using the [Gnip Rules AP
 `gem install gnip-rule` or add the following to your `Gemfile`:
 
 ```ruby
-gem 'gnip-rule', '~> 0.2'
+gem 'gnip-rule', '~> 0.3'
 ```
 
 ## Usage
@@ -28,7 +28,9 @@ rules.delete(['foo', 'bar'])
 rules.delete(GnipRule::Rule.new('value', 'tag'))
 
 # Get all rules
-rules.list()
+rules_list = rules.list()
+rules_list.each { |rule| rule.valid? }
+jsonified = rules_list.map { |rule| rule.as_json `}
 ```
 
 ## License
