@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ['lib']
 
-  s.add_development_dependency 'rake', '~> 0.9.2.2'
+  s.add_development_dependency 'rake', '~> 0.9.2'
   s.add_development_dependency 'rspec', '~> 2.10.0'
   s.add_development_dependency 'webmock', '~> 1.8.11'
   s.add_development_dependency 'guard', '~> 1.4.0'
@@ -38,6 +38,8 @@ Gem::Specification.new do |s|
     s.add_development_dependency 'rb-notifu'
   end
 
-  s.add_dependency 'curb', '>= 0.8.0', '< 0.9.0'
-  s.add_dependency 'json', '>= 1.7.0', '< 1.8.0'
+  s.add_dependency 'rest-client', '~> 1.6.7'
+  s.add_dependency 'json', '~> 1.7.0'
+  s.add_dependency 'jruby-openssl' if RUBY_PLATFORM == 'java'
+  s.add_dependency 'openssl' if RUBY_PLATFORM == 'ruby'
 end

@@ -1,4 +1,4 @@
-require 'curb'
+require 'rest-client'
 require 'json'
 require 'gnip-rule/rule'
 
@@ -22,17 +22,10 @@ module GnipRule
     end
 
     def list()
-      rules = nil
-      Curl::Easy.http_get(@url) do |curl|
-        curl.http_auth_types = :basic
-        curl.username = @username
-        curl.password = @password
-        curl.on_body do |obj|
-          rules = JSON.parse(obj)['rules'].collect { |o| Rule.new(o['value'], o['tag']) }
-          obj.size
-        end
-      end
-      rules
+      response = RestClient::Request.new(:method => :get, :url => @url,
+                                         :user => @username, :password => @password,
+                                         :headers => { :accept => :json }).execute
+      JSON.parse(response.to_s)['rules'].collect { |o| Rule.new(o['value'], o['tag']) }
     end
 
     def jsonify_rules(values, tag=nil)
@@ -49,18 +42,8 @@ module GnipRule
 
     protected
     def post(url, data)
-      err = nil
-      Curl::Easy.http_post(url, data) do |curl|
-        curl.http_auth_types = :basic
-        curl.username = @username
-        curl.password = @password
-        curl.on_complete do |res|
-          if res.response_code >= 400
-            err = "Got #{res.response_code}; body: #{res.body_str}"
-          end
-        end
-      end
-      raise err if err
+      RestClient::Request.new(:method => :post, :url => url, :payload => data,
+          :user => @username, :password => @password, :headers => { :content_type => :json, :accept => :json }).execute
     end
   end
 end

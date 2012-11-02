@@ -25,7 +25,7 @@ describe GnipRule::Client do
       stub_request(:post, base_url_with_auth).
           with(:body => '{"rules":[{"value":"value","tag":"tag"}]}').
           to_return(:status => 401, :body => 'Error message', :headers => {})
-      lambda { subject.add('value', 'tag') }.should raise_error('Got 401; body: Error message')
+      lambda { subject.add('value', 'tag') }.should raise_error
     end
   end
 
@@ -45,6 +45,13 @@ describe GnipRule::Client do
       rules = subject.list()
       rules.size.should == 2
       rules.map { |r| r.valid?.should == true }
+    end
+
+    it 'should raise an error if Gnip returns HTTP error' do
+      stub_request(:get, base_url).
+          with(:body => '{"rules":[{"value":"value","tag":"tag"}]}').
+          to_return(:status => 401, :body => 'Error message', :headers => {})
+      lambda { subject.list() }.should raise_error
     end
   end
 
