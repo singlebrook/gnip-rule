@@ -4,7 +4,6 @@ require 'gnip-rule/rule'
 
 module GnipRule
   class Client
-
     attr_reader :url, :username, :password
 
     def initialize(url, username, password)
@@ -13,12 +12,12 @@ module GnipRule
       @password = password
     end
 
-    def add(value, tag=nil)
-      post(@url, jsonify_rules(value, tag))
+    def add(input, tag=nil)
+      post(@url, gen_json_payload(input, tag))
     end
 
-    def delete(value, tag=nil)
-      post("#@url?_method=delete", jsonify_rules(value, tag))
+    def delete(input, tag=nil)
+      post("#@url?_method=delete", gen_json_payload(input, tag))
     end
 
     def list()
@@ -28,16 +27,12 @@ module GnipRule
       JSON.parse(response.to_s)['rules'].collect { |o| Rule.new(o['value'], o['tag']) }
     end
 
-    def jsonify_rules(values, tag=nil)
-      rules = nil
-      if values.instance_of?(Array)
-        rules = values.collect { |o| o.instance_of?(Rule) ? o : Rule.new(o, tag) }
-      elsif values.instance_of?(Rule)
-        rules = [values]
-      else
-        rules = [Rule.new(values, tag)]
-      end
-      {:rules => rules.collect(&:as_hash)}.to_json
+    def gen_json_payload(input, tag=nil)
+      input = [input] unless input.respond_to? :collect
+      {:rules => input.collect { |i|
+        raise 'Input must be convertable to GnipRule::Rule' unless i.respond_to? :to_rule
+        i.to_rule(tag).to_hash
+      }}.to_json
     end
 
     protected
