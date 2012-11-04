@@ -34,6 +34,13 @@ jsonified = rules_list.map { |rule| rule.as_json `}
 rules_tagged_foo = rules_list.select { |rule| rule.tag == 'foo' }
 ```
 
+## Compatibility
+This gem is tested to be compatible with:
+
+ * MRI 1.8.7, 1.9.x, 2.0.0-preview1
+ * JRuby 1.6.x, 1.7.0
+ * Rubinius 2.0.0dev
+
 ## License
 Licenced under the [MIT License](http://www.opensource.org/licenses/mit-license.php)
 
