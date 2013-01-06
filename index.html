@@ -17,7 +17,7 @@
         $('#main_content').headsmart()
       })
     </script>
-    <title>gnip-rule by eriwen</title>
+    <title>Gnip-rule by eriwen</title>
   </head>
 
   <body>
@@ -37,7 +37,7 @@
 
       <section id="downloads">
         <span class="inner">
-          <a href="https://github.com/eriwen/gnip-rule/zipball/master" class="zip"><em>download</em> .zip</a><a href="https://github.com/downloads/eriwen/gnip-rule/gnip-rule-0.3.gem" class="tgz"><em>download</em> gem</a>
+          <a href="https://github.com/eriwen/gnip-rule/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/eriwen/gnip-rule/tarball/master" class="tgz"><em>download</em> .TGZ</a>
         </span>
       </section>
 
@@ -48,11 +48,11 @@
       <section id="main_content">
         <p>This gem simplifies the effort to add/delete/list rules using the <a href="http://support.gnip.com/customer/portal/articles/477713-rules-methods-documentation">Gnip Rules API</a>. It handles HTTP request/response and helps your rules conform to Gnip's restrictions.</p>
 
-        <h2>Install it</h2>
+<h2>Install it</h2>
 
 <p><code>gem install gnip-rule</code> or add the following to your <code>Gemfile</code>:</p>
 
-<div class="highlight"><pre><span class="n">gem</span> <span class="s1">'gnip-rule'</span><span class="p">,</span> <span class="s1">'~&gt; 0.3'</span>
+<div class="highlight"><pre><span class="n">gem</span> <span class="s1">'gnip-rule'</span><span class="p">,</span> <span class="s1">'~&gt; 0.3.1'</span>
 </pre></div>
 
 <h2>Use it</h2>
@@ -66,24 +66,37 @@
 <span class="n">rules</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">)</span>
 <span class="n">rules</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">[</span><span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'baz'</span><span class="o">]</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">)</span>
 <span class="n">rules</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="no">GnipRule</span><span class="o">::</span><span class="no">Rule</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">'value'</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">))</span>
+<span class="n">rules</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">[</span><span class="no">GnipRule</span><span class="o">::</span><span class="no">Rule</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="p">),</span> <span class="no">GnipRule</span><span class="o">::</span><span class="no">Rule</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">'baz'</span><span class="p">,</span> <span class="s1">'tag2'</span><span class="p">)</span><span class="o">]</span><span class="p">)</span>
 
 <span class="c1"># Same with delete</span>
 <span class="n">rules</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">'baz'</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">)</span>
 <span class="n">rules</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="o">[</span><span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="o">]</span><span class="p">)</span>
 <span class="n">rules</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="no">GnipRule</span><span class="o">::</span><span class="no">Rule</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">'value'</span><span class="p">,</span> <span class="s1">'tag'</span><span class="p">))</span>
 
-<span class="c1"># Get a list of rules as GnipRule::Rule objects</span>
-<span class="n">rule_list</span> <span class="o">=</span> <span class="n">rules</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+<span class="c1"># Get all rules</span>
+<span class="n">rules_list</span> <span class="o">=</span> <span class="n">rules</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+<span class="n">rules_list</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">rule</span><span class="o">|</span> <span class="n">rule</span><span class="o">.</span><span class="n">valid?</span> <span class="p">}</span>
+<span class="n">jsonified</span> <span class="o">=</span> <span class="n">rules_list</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">rule</span><span class="o">|</span> <span class="n">rule</span><span class="o">.</span><span class="n">as_json</span> <span class="sb">`}</span>
+<span class="sb">rules_tagged_foo = rules_list.select { |rule| rule.tag == 'foo' }</span>
 </pre></div>
 
-<h2>License</h2>
-<p>Licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>.</p>
+<h2>Compatibility</h2>
+
+<p>This gem is tested to be compatible with:</p>
+
+<ul>
+<li>MRI 1.8.7, 1.9.x, 2.0.0-preview1</li>
+<li>JRuby 1.6.x, 1.7.0</li>
+<li>Rubinius 2.0.0dev</li>
+</ul><h2>License</h2>
+
+<p>Licenced under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></p>
       </section>
 
       <footer>
         <span class="ribbon-outer">
           <span class="ribbon-inner">
-            <p>this project by <a href="https://github.com/eriwen">eriwen</a> can be found on <a href="https://github.com/eriwen/gnip-rule">GitHub</a> <a href="http://coderwall.com/eriwen"><img style="border: 0px none; vertical-align: bottom; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; margin-left: 15px;" alt="Endorse eriwen on Coderwall" src="http://api.coderwall.com/eriwen/endorsecount.png" /></a></p>
+            <p>this project by <a href="https://github.com/eriwen">eriwen</a> can be found on <a href="https://github.com/eriwen/gnip-rule">GitHub</a></p>
           </span>
           <span class="left-tail"></span>
           <span class="right-tail"></span>
@@ -92,19 +105,18 @@
         <span class="octocat"></span>
       </footer>
 
-  </div>
-<script type="text/javascript">
+    </div>
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-34997412-2']);
-  _gaq.push(['_trackPageview']);
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-34997412-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
   </body>
 </html>
