@@ -1,4 +1,2 @@
-source 'http://rubygems.org'
-
-# Specify your gem's dependencies in gnip-rule.gemspec
+source 'https://rubygems.org'
 gemspec

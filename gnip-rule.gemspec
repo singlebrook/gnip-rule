@@ -15,16 +15,14 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = 'gnip-rule'
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.files = Dir['lib/**/*']
   s.require_paths = ['lib']
 
-  s.add_development_dependency 'rake', '~> 0.9.2'
-  s.add_development_dependency 'rspec', '~> 2.10.0'
+  s.add_development_dependency 'rake', '~> 10.0.3'
+  s.add_development_dependency 'rspec', '~> 2.13.0'
   s.add_development_dependency 'webmock', '~> 1.8.11'
-  s.add_development_dependency 'guard', '~> 1.4.0'
-  s.add_development_dependency 'guard-rspec', '~> 1.2.0'
+  s.add_development_dependency 'guard', '~> 1.6.2'
+  s.add_development_dependency 'guard-rspec', '~> 2.5.0'
   s.add_development_dependency 'fuubar', '~> 1.1.0'
 
   if RbConfig::CONFIG['host_os'] =~ /darwin/
@@ -39,6 +37,6 @@ Gem::Specification.new do |s|
   end
 
   s.add_dependency 'rest-client', '~> 1.6.7'
-  s.add_dependency 'json', '~> 1.7.0'
+  s.add_dependency 'json', '~> 1.7.7'
   s.add_dependency 'jruby-openssl' if RUBY_PLATFORM == 'java'
 end

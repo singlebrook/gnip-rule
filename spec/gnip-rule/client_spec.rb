@@ -15,7 +15,6 @@ describe GnipRule::Client do
     it 'should not munch JSON URLs' do
       GnipRule::Client.new(base_url, 'username', 'password').url.should == base_url
     end
-
   end
 
   describe 'instance' do
