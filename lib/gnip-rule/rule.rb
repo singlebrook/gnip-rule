@@ -58,7 +58,7 @@ module GnipRule
     end
 
     def too_many_positive_terms?
-      @value.scan(/\b\w+|\"[\-\s\w]+\"\b/).size > 10
+      @value.scan(/\b\w+|\"[\-\s\w]+\"\b/).size > 30
     end
 
     def contains_empty_source?

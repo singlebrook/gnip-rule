@@ -5,7 +5,7 @@ This gem simplifies the effort to add/delete/list rules using the [Gnip Rules AP
 `gem install gnip-rule` or add the following to your `Gemfile`:
 
 ```ruby
-gem 'gnip-rule', '~> 0.3.1'
+gem 'gnip-rule', '~> 0.4.0'
 ```
 
 ## Usage
