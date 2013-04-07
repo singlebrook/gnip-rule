@@ -39,6 +39,14 @@ describe GnipRule::Rule do
     end
   end
 
+  describe '#to_s' do
+    it 'should return json output' do
+      rule = GnipRule::Rule.new('foo')
+      rule.should_receive(:to_json).and_call_original
+      rule.to_s.should == '{"value":"foo"}'
+    end
+  end
+
   describe '#to_json' do
     it 'should omit tag if tag not defined' do
       rule = GnipRule::Rule.new('foo')
