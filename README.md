@@ -1,4 +1,4 @@
-# gnip-rule [![Build Status](https://secure.travis-ci.org/eriwen/gnip-rule.png)](http://travis-ci.org/eriwen/gnip-rule) [![Code Climate](https://codeclimate.com/github/eriwen/gnip-rule.png)](https://codeclimate.com/github/eriwen/gnip-rule)
+# gnip-rule
 This gem simplifies the effort to add/delete/list rules using the [Gnip Rules API](http://support.gnip.com/customer/portal/articles/477713-rules-methods-documentation). It handles HTTP request/response and helps your rules conform to Gnip's restrictions.
 
 ## Installation
@@ -40,6 +40,19 @@ This gem is tested to be compatible with:
  * MRI 1.8.7, 1.9.x, 2.0.0-preview1
  * JRuby 1.6.x, 1.7.0
  * Rubinius 2.0.0dev
+
+## Contributing
+[![Build Status](https://secure.travis-ci.org/eriwen/gnip-rule.png)](http://travis-ci.org/eriwen/gnip-rule) [![Code Climate](https://codeclimate.com/github/eriwen/gnip-rule.png)](https://codeclimate.com/github/eriwen/gnip-rule) [![Coverage Status](https://coveralls.io/repos/eriwen/gnip-rule/badge.png?branch=master)](https://coveralls.io/r/eriwen/gnip-rule)
+
+When submitting pull requests, please do the following to make it easier to incorporate your changes:
+
+* Include unit and/or functional specs that validate changes you're making.
+* Rebase your changes onto the HEAD of my fork if you can do so cleanly.
+* If submitting additional functionality, provide an example of how to use it.
+* Please keep code style consistent with surrounding code.
+
+### Testing
+You can run all tests by simply running `bundle exec rake test` from your favorite shell.
 
 ## License
 Licenced under the [MIT License](http://www.opensource.org/licenses/mit-license.php)

@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'guard', '~> 1.6.2'
   s.add_development_dependency 'guard-rspec', '~> 2.5.0'
   s.add_development_dependency 'fuubar', '~> 1.1.0'
+  s.add_development_dependency 'coveralls', '~> 0.6.4'
 
   if RbConfig::CONFIG['host_os'] =~ /darwin/
     s.add_development_dependency 'rb-fsevent'

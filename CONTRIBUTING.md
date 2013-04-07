@@ -6,4 +6,4 @@ When submitting pull requests, please do the following to make it easier to inco
 * Please keep code style consistent with surrounding code.
 
 ## Testing
-You can run all tests by simply running `bundle exec rspec spec` from your favorite shell.
+You can run all tests by simply running `bundle exec rake test` from your favorite shell.
