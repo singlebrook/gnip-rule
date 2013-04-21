@@ -37,7 +37,7 @@ rules_tagged_foo = rules_list.select { |rule| rule.tag == 'foo' }
 ## Compatibility
 This gem is tested to be compatible with:
 
- * MRI 1.8.7, 1.9.x, 2.0.0-preview1
+ * MRI 1.8.7, 1.9.x, 2.0.0
  * JRuby 1.6.x, 1.7.0
  * Rubinius 2.0.0dev
 
