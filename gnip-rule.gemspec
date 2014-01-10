@@ -38,6 +38,6 @@ Gem::Specification.new do |s|
   end
 
   s.add_dependency 'rest-client', '~> 1.6.7'
-  s.add_dependency 'json', '~> 1.7.7'
+  s.add_dependency 'json', '~> 1.8'
   s.add_dependency 'jruby-openssl' if RUBY_PLATFORM == 'java'
 end
