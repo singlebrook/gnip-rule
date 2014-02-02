@@ -5,7 +5,7 @@ This gem simplifies the effort to add/delete/list rules using the [Gnip Rules AP
 `gem install gnip-rule` or add the following to your `Gemfile`:
 
 ```ruby
-gem 'gnip-rule', '~> 0.4.1'
+gem 'gnip-rule', '~> 0.4.2'
 ```
 
 ## Usage
@@ -38,7 +38,7 @@ rules_tagged_foo = rules_list.select { |rule| rule.tag == 'foo' }
 This gem is tested to be compatible with:
 
  * MRI 1.8.7, 1.9.x, 2.0.0
- * JRuby 1.6.x, 1.7.0
+ * JRuby 1.6.x, 1.7.x
  * Rubinius 2.0.0dev
 
 ## Contributing
