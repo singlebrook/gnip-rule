@@ -54,7 +54,7 @@ module GnipRule
     end
 
     def contains_negated_or?
-      !@value[/\-\w+ OR/].nil?
+      !@value[/\-\w+ OR/].nil? || !@value[/OR \-\w+/].nil?
     end
 
     def too_many_positive_terms?

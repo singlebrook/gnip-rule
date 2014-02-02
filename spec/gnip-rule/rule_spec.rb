@@ -25,7 +25,7 @@ describe GnipRule::Rule do
       GnipRule::Rule.new('foo source: bar').should_not be_valid
     end
     it 'should consider negative ORs to be invalid' do
-      GnipRule::Rule.new('-iphone OR ipad').should_not be_valid
+      GnipRule::Rule.new('apple OR -lang:en').should_not be_valid
     end
     it 'should consider rules with more than 30 positive terms invalid' do
       GnipRule::Rule.new('one two three four five six seven eight nine ten 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30').should be_valid
