@@ -53,4 +53,4 @@ You can run all tests by simply running `bundle exec rake test` from your favori
 ## License
 Licenced under the [MIT License](http://www.opensource.org/licenses/mit-license.php)
 
-I provide this software free of charge. If you find it helpful, please endorse me on coderwall: [![endorse](http://api.coderwall.com/eriwen/endorsecount.png)](http://coderwall.com/eriwen)
+@eriwen and @singlebrook wrote this software. It is provided free of charge. If you find it helpful, please endorse @eriwen on coderwall: [![endorse](http://api.coderwall.com/eriwen/endorsecount.png)](http://coderwall.com/eriwen) and check out [Singlebrook](http://singlebrook.com).
