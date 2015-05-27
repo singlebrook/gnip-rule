@@ -35,11 +35,7 @@ rules_tagged_foo = rules_list.select { |rule| rule.tag == 'foo' }
 ```
 
 ## Compatibility
-This gem is tested to be compatible with:
-
- * MRI 1.8.7, 1.9.x, 2.0.0
- * JRuby 1.6.x, 1.7.x
- * Rubinius 2.0.0dev
+See [.travis.yml](.travis.yml) for Ruby versions used in testing.
 
 ## Contributing
 [![Build Status](https://secure.travis-ci.org/eriwen/gnip-rule.png)](http://travis-ci.org/eriwen/gnip-rule) [![Code Climate](https://codeclimate.com/github/eriwen/gnip-rule.png)](https://codeclimate.com/github/eriwen/gnip-rule) [![Coverage Status](https://coveralls.io/repos/eriwen/gnip-rule/badge.png?branch=master)](https://coveralls.io/r/eriwen/gnip-rule)
