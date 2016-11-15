@@ -16,6 +16,9 @@ RSpec.describe GnipRule::Rule do
   describe '#valid?' do
     it 'should consider rules with "stop words" to be invalid' do
       expect(GnipRule::Rule.new('an value')).to_not be_valid
+      expect(GnipRule::Rule.new('foo AND bar')).to_not be_valid
+      expect(GnipRule::Rule.new('foo NOT bar')).to_not be_valid
+      expect(GnipRule::Rule.new('foo or bar')).to_not be_valid
     end
     it 'should consider rules that are too long to be invalid' do
       rule = GnipRule::Rule.new('x' * 2050)

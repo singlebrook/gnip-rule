@@ -45,7 +45,7 @@ module GnipRule
 
     protected
     def contains_stop_word?
-      stop_words = %W(a an and at but by com from http https if in is it its me my or rt the this to too via we www you)
+      stop_words = %W(a an and AND at but by com from http https if in is it its me my NOT or rt the this to too via we www you)
       (stop_words & @value.gsub(/\"[^\"]*\"/, '').split(/\s/)).size > 0
     end
 
