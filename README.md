@@ -1,5 +1,7 @@
 # gnip-rule
-This gem simplifies the effort to add/delete/list rules using the [Gnip Rules API](http://support.gnip.com/customer/portal/articles/477713-rules-methods-documentation). It handles HTTP request/response and helps your rules conform to Gnip's restrictions.
+This gem simplifies the effort to add/delete/list rules using the [Gnip Rules
+API](http://support.gnip.com/apis/powertrack/api_reference.html). It handles HTTP
+request/response and helps your rules conform to Gnip's restrictions.
 
 ## Installation
 `gem install gnip-rule` or add the following to your `Gemfile`:
