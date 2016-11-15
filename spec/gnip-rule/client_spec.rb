@@ -5,7 +5,7 @@ require 'gnip-rule/client'
 describe GnipRule::Client do
   let(:xml_base_url) { 'https://api.gnip.com:443/accounts/foo/publishers/twitter/streams/track/prod/rules.xml' }
   let(:base_url) { 'https://api.gnip.com:443/accounts/foo/publishers/twitter/streams/track/prod/rules.json' }
-  let(:base_url_with_auth) { 'https://username:password@api.gnip.com:443/accounts/foo/publishers/twitter/streams/track/prod/rules.json' }
+  let(:basic_auth) { { basic_auth: ['username', 'password'] } }
 
   describe '.new' do
     it 'should convert XML URLs to JSON' do
@@ -22,14 +22,16 @@ describe GnipRule::Client do
 
     describe '#add' do
       it 'should POST rule to the given URL with given credentials' do
-        stub_request(:post, base_url_with_auth).
+        stub_request(:post, base_url).
+            with(basic_auth).
             with(:body => '{"rules":[{"value":"value","tag":"tag"}]}').
             to_return(:status => 200, :body => '', :headers => {})
         subject.add('value', 'tag')
       end
 
       it 'should raise an error if Gnip returns HTTP error' do
-        stub_request(:post, base_url_with_auth).
+        stub_request(:post, base_url).
+            with(basic_auth).
             with(:body => '{"rules":[{"value":"value","tag":"tag"}]}').
             to_return(:status => 401, :body => 'Error message', :headers => {})
         lambda { subject.add('value', 'tag') }.should raise_error
@@ -38,7 +40,8 @@ describe GnipRule::Client do
 
     describe '#delete' do
       it 'should POST rule json to a URL with given credentials' do
-        stub_request(:post, "#{base_url_with_auth}?_method=delete").
+        stub_request(:post, "#{base_url}?_method=delete").
+            with(basic_auth).
             with(:body => '{"rules":[{"value":"value","tag":"tag"}]}').
             to_return(:status => 200, :body => '', :headers => {})
         subject.delete('value', 'tag')
@@ -47,7 +50,8 @@ describe GnipRule::Client do
 
     describe '#list' do
       it 'should GET a URL with given credentials' do
-        stub_request(:get, base_url_with_auth).
+        stub_request(:get, base_url).
+            with(basic_auth).
             to_return(:status => 200, :body => '{"rules":[{"value":"foo","tag":"baz"},{"value":"bar","tag":"baz"}]}')
         rules = subject.list()
         rules.size.should == 2
