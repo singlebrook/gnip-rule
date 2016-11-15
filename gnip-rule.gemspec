@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'fuubar', '~> 2.2'
   s.add_development_dependency 'coveralls', '~> 0.6'
 
-  s.add_dependency 'rest-client', '~> 1.6'
-  s.add_dependency 'json', '~> 1.8'
+  s.add_dependency 'rest-client', '>= 1.6', '< 3'
+  s.add_dependency 'json', '>= 1.8', '< 3'
   s.add_dependency 'jruby-openssl' if RUBY_PLATFORM == 'java'
 end
