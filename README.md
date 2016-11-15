@@ -40,9 +40,12 @@ rules_tagged_foo = rules_list.select { |rule| rule.tag == 'foo' }
 See [.travis.yml](.travis.yml) for Ruby versions used in testing.
 
 ## Contributing
-[![Build Status](https://secure.travis-ci.org/singlebrook/gnip-rule.png)](http://travis-ci.org/singlebrook/gnip-rule) [![Code Climate](https://codeclimate.com/github/singlebrook/gnip-rule.png)](https://codeclimate.com/github/singlebrook/gnip-rule) [![Coverage Status](https://coveralls.io/repos/singlebrook/gnip-rule/badge.png?branch=master)](https://coveralls.io/r/singlebrook/gnip-rule)
+[![Build Status](https://secure.travis-ci.org/singlebrook/gnip-rule.png)](http://travis-ci.org/singlebrook/gnip-rule)
+[![Code Climate](https://codeclimate.com/github/singlebrook/gnip-rule.png)](https://codeclimate.com/github/singlebrook/gnip-rule)
+[![Coverage Status](https://coveralls.io/repos/singlebrook/gnip-rule/badge.png?branch=master)](https://coveralls.io/r/singlebrook/gnip-rule)
 
-When submitting pull requests, please do the following to make it easier to incorporate your changes:
+When submitting pull requests, please do the following to make it easier to incorporate
+your changes:
 
 * Include unit and/or functional specs that validate changes you're making.
 * Rebase your changes onto the HEAD of my fork if you can do so cleanly.
@@ -55,4 +58,7 @@ You can run all tests by simply running `bundle exec rake test` from your favori
 ## License
 Licenced under the [MIT License](http://www.opensource.org/licenses/mit-license.php)
 
-@eriwen and @singlebrook wrote this software. It is provided free of charge. If you find it helpful, please endorse @eriwen on coderwall: [![endorse](http://api.coderwall.com/eriwen/endorsecount.png)](http://coderwall.com/eriwen) and check out [Singlebrook](http://singlebrook.com).
+@eriwen and @singlebrook wrote this software. It is provided free of charge. If you find
+it helpful, please endorse @eriwen on coderwall:
+[![endorse](http://api.coderwall.com/eriwen/endorsecount.png)](http://coderwall.com/eriwen)
+and check out [Singlebrook](http://singlebrook.com).
