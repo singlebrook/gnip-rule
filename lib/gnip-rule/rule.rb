@@ -50,7 +50,7 @@ module GnipRule
     end
 
     def too_long?
-      @value.size > 1024
+      @value.size > 2048
     end
 
     def contains_negated_or?
