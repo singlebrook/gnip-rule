@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'rake', '~> 10.0'
   s.add_development_dependency 'rspec', '~> 2.13'
-  s.add_development_dependency 'webmock', '>= 2.0'
+  s.add_development_dependency 'webmock', '~> 2.0'
   s.add_development_dependency 'guard', '~> 1.6'
   s.add_development_dependency 'guard-rspec', '~> 2.5'
   s.add_development_dependency 'fuubar', '~> 1.1'
