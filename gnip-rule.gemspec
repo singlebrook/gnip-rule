@@ -21,23 +21,12 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.0'
 
   s.add_development_dependency 'rake', '~> 10.0'
-  s.add_development_dependency 'rspec', '~> 2.13'
+  s.add_development_dependency 'rspec', '~> 3.5'
   s.add_development_dependency 'webmock', '~> 2.0'
-  s.add_development_dependency 'guard', '~> 1.6'
-  s.add_development_dependency 'guard-rspec', '~> 2.5'
-  s.add_development_dependency 'fuubar', '~> 1.1'
+  s.add_development_dependency 'guard', '~> 2.1'
+  s.add_development_dependency 'guard-rspec', '~> 4.7'
+  s.add_development_dependency 'fuubar', '~> 2.2'
   s.add_development_dependency 'coveralls', '~> 0.6'
-
-  if RbConfig::CONFIG['host_os'] =~ /darwin/
-    s.add_development_dependency 'rb-fsevent'
-    s.add_development_dependency 'ruby_gntp'
-  elsif RbConfig::CONFIG['host_os'] =~ /linux/
-    s.add_development_dependency 'rb-inotify'
-    s.add_development_dependency 'libnotify'
-  elsif RbConfig::CONFIG['host_os'] =~ /msmin|mingw/
-    s.add_development_dependency 'wdm'
-    s.add_development_dependency 'rb-notifu'
-  end
 
   s.add_dependency 'rest-client', '~> 1.6'
   s.add_dependency 'json', '~> 1.8'
