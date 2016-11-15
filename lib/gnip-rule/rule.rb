@@ -21,7 +21,7 @@ module GnipRule
       return false if contains_stop_word?
       return false if contains_empty_source?
       return false if contains_negated_or?
-      return true
+      true
     end
 
     # NOTE: Unused variable for consistency with other to_rule impls
