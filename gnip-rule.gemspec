@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = GnipRule::VERSION
 
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ['Eric Wendelin']
-  s.email       = ['me@eriwen.com']
-  s.homepage    = 'https://github.com/eriwen/gnip-rule'
+  s.authors     = ['Eric Wendelin', 'Leon Miller-Out']
+  s.email       = ['me@eriwen.com', 'leon@singlebrook.com']
+  s.homepage    = 'https://github.com/singlebrook/gnip-rule'
   s.summary     = %q{Ruby library for working with the Gnip Rules API}
   s.description = s.summary
 
