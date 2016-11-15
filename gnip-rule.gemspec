@@ -27,6 +27,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'guard-rspec', '~> 4.7'
   s.add_development_dependency 'fuubar', '~> 2.2'
   s.add_development_dependency 'coveralls', '~> 0.6'
+  # ruby_dep 1.5 drops support for Ruby < 2.2.5, and we need to support earlier Rubies.
+  s.add_development_dependency 'ruby_dep', '< 1.5'
 
   s.add_dependency 'rest-client', '~> 1.6'
   s.add_dependency 'json', '~> 1.8'
