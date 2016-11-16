@@ -29,10 +29,16 @@ module GnipRule
 
     def gen_json_payload(input, tag=nil)
       input = [input] unless input.respond_to? :collect
-      {:rules => input.collect { |i|
-        raise 'Input must be convertable to GnipRule::Rule' unless i.respond_to? :to_rule
-        i.to_rule(tag).to_hash
-      }}.to_json
+      rules = input.map { |i|
+        if i.respond_to?(:to_rule)
+          i.to_rule(tag)
+        elsif i.is_a?(String)
+          GnipRule::Rule.new(i, tag)
+        else
+          raise 'Input must be convertable to GnipRule::Rule'
+        end
+      }
+      { rules: rules.map(&:to_hash) }.to_json
     end
 
     protected

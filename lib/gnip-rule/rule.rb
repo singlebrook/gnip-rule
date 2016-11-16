@@ -1,11 +1,5 @@
 require 'json'
 
-class String
-  def to_rule(tag=nil)
-    GnipRule::Rule.new(self, tag)
-  end
-end
-
 module GnipRule
   class Rule
     attr_accessor :value, :tag
